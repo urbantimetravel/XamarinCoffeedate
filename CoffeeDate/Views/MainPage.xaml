@@ -1,5 +1,68 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CoffeeDate.Views.MainPage">
-    <ContentPage.Content>
-    </ContentPage.Content>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="CoffeeDate.Views.MainPage"
+             Title="Team Selection">
+    <ContentPage.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" 
+                                        Value="#FF7700" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    <StackLayout Margin="20">
+        <ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                    <Label Text="Up for it:" />
+                    <Label x:Name="currentSelectedItemLabel"
+                           Grid.Column="1" />
+            </Grid>
+        </ScrollView>
+        <CollectionView ItemsSource="{Binding Team}"
+                        SelectionMode="Multiple"
+                        SelectionChanged="OnCollectionViewSelectionChanged">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Row="0" Grid.Column="0" 
+                               Source="{Binding ImageIcon}" 
+                               Aspect="AspectFill"
+                               HeightRequest="50" 
+                               WidthRequest="50" />
+                        <Label Grid.Column="1"
+                               Padding="10,0,0,0"
+                               Text="{Binding Name}" 
+                               FontAttributes="Bold"
+                               HorizontalTextAlignment="Start"
+                               VerticalTextAlignment="Center" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button Text="Pair Up" Clicked="CreateButton_OnClicked" />
+    </StackLayout>
 </ContentPage>

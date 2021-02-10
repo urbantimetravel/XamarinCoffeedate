@@ -1,5 +1,22 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CoffeeDate.Views.PairView">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CoffeeDate.Views.PairView" Title="Pairs" NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
+    <StackLayout Margin="20">
+        <Label Text="Let's have coffee! Pair up for 15 minutes."></Label>
+        <ListView Margin="0,20,0,0" ItemsSource="{Binding Pairs}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" Grid.Row="1" Margin="10, 0, 10, 10" VerticalOptions="Center">
+                            <Label Text="{Binding FirstPerson.Name}" FontAttributes="Bold" HorizontalTextAlignment="End" />
+                            <Label Grid.Column="1" Text="and" HorizontalTextAlignment="Center" />
+                            <Label Grid.Column="2" Text="{Binding SecondPerson.Name}" FontAttributes="Bold" HorizontalTextAlignment="Start" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
     </ContentPage.Content>
 </ContentPage>
